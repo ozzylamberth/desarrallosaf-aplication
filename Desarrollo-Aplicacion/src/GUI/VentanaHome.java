@@ -45,9 +45,9 @@ public class VentanaHome extends javax.swing.JFrame {
         jLabel1.setBounds(0, 0, 800, 600);
         jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton1.setBackground(new java.awt.Color(17, 59, 38));
-        jButton1.setFont(new java.awt.Font("Comic Sans MS", 1, 18));
-        jButton1.setForeground(new java.awt.Color(53, 235, 14));
+        jButton1.setBackground(new java.awt.Color(0, 102, 51));
+        jButton1.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Red-Casino-Chips-32.png"))); // NOI18N
         jButton1.setText("Salir");
         jButton1.setAlignmentX(0.5F);
@@ -60,9 +60,9 @@ public class VentanaHome extends javax.swing.JFrame {
         jButton1.setBounds(630, 430, 150, 110);
         jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DRAG_LAYER);
 
-        jButton2.setBackground(new java.awt.Color(17, 59, 38));
-        jButton2.setFont(new java.awt.Font("Comic Sans MS", 1, 18));
-        jButton2.setForeground(new java.awt.Color(53, 235, 14));
+        jButton2.setBackground(new java.awt.Color(0, 102, 51));
+        jButton2.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Red-Casino-Chips-32.png"))); // NOI18N
         jButton2.setText("Iniciar");
         jButton2.setAlignmentX(0.5F);

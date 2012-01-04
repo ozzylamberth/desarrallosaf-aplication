@@ -74,7 +74,7 @@ public class VentanaNuevoUsuario extends javax.swing.JFrame {
         jPanel1.setOpaque(false);
         jPanel1.setPreferredSize(new java.awt.Dimension(504, 430));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre");
         jLabel2.setMaximumSize(new java.awt.Dimension(100, 14));
@@ -87,13 +87,13 @@ public class VentanaNuevoUsuario extends javax.swing.JFrame {
         jLabel3.setMaximumSize(new java.awt.Dimension(100, 14));
         jLabel3.setMinimumSize(new java.awt.Dimension(100, 100));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Nickname");
         jLabel4.setMaximumSize(new java.awt.Dimension(100, 14));
         jLabel4.setMinimumSize(new java.awt.Dimension(100, 100));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Fecha ");
         jLabel5.setMaximumSize(new java.awt.Dimension(100, 14));
@@ -110,16 +110,21 @@ public class VentanaNuevoUsuario extends javax.swing.JFrame {
 
         nNickname.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Password");
 
-        nPassword.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        nPassword.setFont(new java.awt.Font("Tahoma", 0, 24));
 
+        nFecha.setBackground(new java.awt.Color(255, 255, 255));
+        nFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 51)));
         nFecha.setDateFormatString("dd-MM-yyyy");
         nFecha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
+        jAgregar.setBackground(new java.awt.Color(0, 102, 51));
         jAgregar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        jAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Red-Casino-Chips-32.png"))); // NOI18N
         jAgregar.setText("Aceptar");
         jAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,7 +133,7 @@ public class VentanaNuevoUsuario extends javax.swing.JFrame {
         });
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Sexo");
 
@@ -216,7 +221,13 @@ public class VentanaNuevoUsuario extends javax.swing.JFrame {
         jMenu1.setText("Options");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, 0));
+        jMenuItem1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem1.setText("Regresar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
@@ -301,6 +312,13 @@ public class VentanaNuevoUsuario extends javax.swing.JFrame {
     private void nSexoComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_nSexoComponentAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_nSexoComponentAdded
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        VentanaMenu menu = new VentanaMenu();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
     * @param args the command line arguments
