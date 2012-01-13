@@ -27,12 +27,6 @@ public boolean agregarUsuario(String nombreUsuario,String apellidoUsuario,String
 public Usuario buscarUsuario(String nickName) ;
 
 
-public boolean actualizarUsuario(Usuario usuario);
 
-/** Firma para Borrar un Usuario de la Base de Datos
- * @param nombre, apellido, sexo, nick, password, fecha de nacimiento del usuario
- * @return boolean inidicando si se pudo borrar o no el usuario en el motor
-*/
- public boolean borrarUsuario(String nickName);
 
 }

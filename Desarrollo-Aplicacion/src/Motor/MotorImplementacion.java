@@ -8,6 +8,7 @@ package Motor;
 import Dominio.Evento;
 import Interface.CreateUserException;
 import Interface.InterfaceEnlace;
+import Motor.DAO.DAOApuesta;
 import com.mysql.jdbc.Statement;
 import java.sql.PreparedStatement;
 import Motor.DAO.DAOUsuario;
@@ -26,53 +27,11 @@ import java.util.Date;
  */
 public class MotorImplementacion implements InterfaceEnlace {
 
-    private static DAOUsuario manejadorPersistencia = new DAOUsuario();
+    private static DAOApuesta manejadorPersistencia = new DAOApuesta();
     private static DaoEventoXML manejadorPersistenciaEvento = new DaoEventoXML();
     
-     
 
-    public String ObtenerApellidoUsuario(String player) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
-    public boolean crearUsuario(String nombreUsuario, String apellidoUsuario, String nickUsuario, String sexo,  String passwordUsuario,Date fechaNacimientoUsuario,int status) throws CreateUserException
-    
-    {
-        boolean resultado;
-        resultado = manejadorPersistencia.agregarUsuario(nombreUsuario, apellidoUsuario, nickUsuario, sexo, passwordUsuario,fechaNacimientoUsuario,status);
-
-        if (resultado) {
-            return true;
-        }
-        else
-
-            return false;
-
-     }
-
-    public boolean eliminarUsuario(String NickUsuario, String Password) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public String obtenerFechaNacimientoUsuario(String player) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public Collection<String> obtenerListaNickUsuarioes() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public String obtenerNickUsuario(String player) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public String obtenerNombreUsuario(String player) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public String obtenerSexoUsuario(String player) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     public ArrayList<Evento> todosLosEventos() {
           ArrayList<Evento> eventos = this.manejadorPersistenciaEvento.todosLosEventos();
@@ -84,5 +43,19 @@ public class MotorImplementacion implements InterfaceEnlace {
      evento = this.manejadorPersistenciaEvento.buscarEvento(name);
      return evento;
  }
+
+ 
+
+    public boolean agregarApuesta(String name, String categoryName, String nameCompetitor, int pos, int apuestaU, Date fechaActual, String status, String category_type) {
+         boolean resultado=false;
+        resultado = manejadorPersistencia.agregarApuesta(name, categoryName, nameCompetitor,pos,  apuestaU,  fechaActual, status,  category_type);
+        if (resultado) {
+            return true;
+        }
+        else
+
+            return false;
+    }
+
 
 }

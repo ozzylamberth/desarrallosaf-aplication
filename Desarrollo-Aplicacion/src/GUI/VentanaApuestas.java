@@ -219,7 +219,7 @@ public class VentanaApuestas extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        VentanaMenu menu = new VentanaMenu();
+        VentanaHome menu = new VentanaHome();
         menu.setVisible(true);
         this.dispose();
 }//GEN-LAST:event_jMenuItem1ActionPerformed
