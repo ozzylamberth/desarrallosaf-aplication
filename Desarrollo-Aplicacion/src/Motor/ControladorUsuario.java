@@ -12,6 +12,7 @@ import Interface.Motor;
 import Motor.DAO.DAOUsuario;
 import java.util.ArrayList;
 import java.util.Date;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -20,11 +21,12 @@ import java.util.Date;
 
 /** Clase que controla el registro de usuario en XML*/
 public class ControladorUsuario {
-
-    /** atributo para el manejo de la persistencia de cliente*/
+    /** atributo para el manejo de log4j*/
+    private final static Logger log = Logger.getLogger(ControladorUsuario.class);
+   /** atributo para el manejo de la persistencia de cliente*/
    private static DAOUsuario manejadorPersistencia = new DAOUsuario();
     /** atributo para el manejo del motor*/
-    private static InterfaceEnlace miMotor = (InterfaceEnlace) Motor.getMotorImplementacion();
+    private static InterfaceEnlace miMotor = Motor.getMotorImplementacion();
 
     
   /**
@@ -32,15 +34,20 @@ public class ControladorUsuario {
  * @param nombre,apellido,nick,patthAvatar,fechaNacimiento,password
  * @return boolean indicando si lo pudo crear
  */
-    public static boolean crearUsuario(String nombreUsuario,String apellidoUsuario,String nickUsuario,String sexoUsuario,Date fechaNacimientoUsuario, String passwordUsuario) throws CreateUserException
+    public static boolean crearUsuario(String nombre,String apellido,String nickname,String sexo, String password,java.util.Date fechan,int status) throws CreateUserException
+     
     {
+
         boolean resultado = false;
-        Usuario comprobar =null;
-        comprobar = ControladorUsuario.buscarUsuario(nickUsuario);
-        if (comprobar == null)
+        Usuario comprobar = new Usuario();
+        comprobar = ControladorUsuario.buscarUsuario(nickname);
+        if (comprobar.getNombreUsuario() == null)
         {
-            resultado = miMotor.crearUsuario(nombreUsuario,apellidoUsuario,nickUsuario,sexoUsuario,fechaNacimientoUsuario,passwordUsuario);
+             
+            resultado = miMotor.crearUsuario(nombre,apellido,nickname,sexo,password,fechan,status);
+            
         }
+
         
         return resultado;
 
@@ -54,12 +61,12 @@ public class ControladorUsuario {
      * @param Fecha fecha de nacimiento del cliente
      * @return valor booleano con la condicion de exito
      */
-    public static boolean actualizarUsuario(String nickname, String nombre, String apellido,Date fecha,String avatar,String password) {
+    public static boolean actualizarUsuario(String nickname, String nombre, String apellido,Date fechan,String avatar,String password) {
         boolean resultado = false;
         Usuario usuarioAct = new Usuario();
         usuarioAct.setNombreUsuario(nombre);
         usuarioAct.setApellidoUsuario(apellido);
-        usuarioAct.setFechaNacimientoUsuario(fecha);
+        usuarioAct.setFechaNacimientoUsuario(fechan);
         resultado = manejadorPersistencia.actualizarUsuario(usuarioAct);
         return resultado;
     }
@@ -85,12 +92,13 @@ public class ControladorUsuario {
     public static Usuario buscarUsuario(String nickname)
 {
          Usuario resultado = null;
-         manejadorPersistencia.conectar();
          resultado = manejadorPersistencia.buscarUsuario(nickname);
+         if (resultado.getNombreUsuario() == null ){
          return resultado;
+         }
+        else{
+             return resultado;
+        }
 
 }
-
- 
-
 }

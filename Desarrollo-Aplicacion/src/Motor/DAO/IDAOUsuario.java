@@ -5,10 +5,34 @@
 
 package Motor.DAO;
 
+import Dominio.Usuario;
+import java.util.Date;
+
 /**
  *
  * @author Patricia
  */
 public interface IDAOUsuario {
+
+/** Firma para crear un Usuario nuevo en Base de datos
+ * @param nombre, apellido, sexo, nick, password, fecha de nacimiento del usuario
+ * @return boolean inidicando si se pudo agregar o no el usuario en el motor
+*/
+public boolean agregarUsuario(String nombreUsuario,String apellidoUsuario,String nickUsuario,String sexo, String passwordUsuario, Date fechaNacimientoUsuario,int status);
+
+/** Firma para Buscar un Usuario en Base de Datos
+ * @param nombre, apellido, sexo, nick, password, fecha de nacimiento del usuario
+ * @return objeto de tipo Usuario siendo nulo si no se encuentra
+*/
+public Usuario buscarUsuario(String nickName) ;
+
+
+public boolean actualizarUsuario(Usuario usuario);
+
+/** Firma para Borrar un Usuario de la Base de Datos
+ * @param nombre, apellido, sexo, nick, password, fecha de nacimiento del usuario
+ * @return boolean inidicando si se pudo borrar o no el usuario en el motor
+*/
+ public boolean borrarUsuario(String nickName);
 
 }
