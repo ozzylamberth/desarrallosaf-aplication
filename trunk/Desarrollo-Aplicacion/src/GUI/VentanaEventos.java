@@ -19,12 +19,17 @@ import Interface.Motor;
 import java.lang.Integer;
 import java.lang.String;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Vector;
 //import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.apache.log4j.Logger;
+import java.util.Map;
 
 /**
  *
@@ -243,6 +248,11 @@ public class VentanaEventos extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jButton1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jButton1PropertyChange(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -451,7 +461,9 @@ public class VentanaEventos extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+        boolean resultado = false;
+        Date fechaMayor;
+        Date fechaMenor;
         String Nombre = jNombre.getText().toString();
         String Competidor = (String) jComboBox1.getSelectedItem();
         int apuestaU =0;
@@ -459,24 +471,105 @@ public class VentanaEventos extends javax.swing.JFrame {
         String Apuesta = "";
         Evento evento = new Evento();
         evento = miMotor.buscarEvento(Nombre);
+        String fechaF = evento.getDate_fin();
+        String fechaI = evento.getDate_ini();
         ArrayList<Competidor> competidoresE = new ArrayList<Competidor>();
         competidoresE = evento.getNameCompetitor();
-        for (int i=0; i<competidoresE.size();i++){
-            if (competidoresE.get(i).getNameCompetitor().equals(Competidor)){
-                Apuesta= competidoresE.get(i).getMax_amount();
-                if ((Integer.parseInt(Apuesta)> apuestaU) && (apuestaU)>=0){
-                    
-                }
-                else{
-                    JOptionPane.showMessageDialog(this, "Monto Errado: El monto permitido para este competidor debe estar comprendio entre 1 y" + " "+ Apuesta+ " "+ "BsF.",strTitle,JOptionPane.ERROR_MESSAGE);
-                }
-             }
-        }
-        
+        Date fechaActual = new Date();
+        SimpleDateFormat formateador = new SimpleDateFormat("hh:mm:ss");
+        formateador.format(fechaActual);
+        SimpleDateFormat sdf;
+        sdf = new SimpleDateFormat("dd-M-yyyy"  );
+        Date fechaFin = null;
+            try {
+                fechaFin = sdf.parse(fechaF);//Cambio Fecha en Formato DATE
+                SimpleDateFormat formateador2 = new SimpleDateFormat("hh:mm:ss");
+                formateador2.format(fechaFin);
+                fechaFin.setHours(23);
+                fechaFin.setMinutes(59);
+                fechaFin.setSeconds(00);
+            } catch (ParseException ex) {
 
-        
+                log.error("Problemas con la fecha",ex);
+            }
+
+            SimpleDateFormat sdf2;
+            sdf2 = new SimpleDateFormat("dd-M-yyyy"  );
+            Date fechaInicio = null;
+            try {
+                fechaInicio = sdf2.parse(fechaI);//Cambio Fecha en Formato DATE
+                SimpleDateFormat formateador3 = new SimpleDateFormat("hh:mm:ss");
+                formateador3.format(fechaInicio);
+                fechaInicio.setHours(8);
+                fechaInicio.setMinutes(00);
+                fechaInicio.setSeconds(00);
+            } catch (ParseException ex) {
+
+                log.error("Problemas con la fecha ",ex);
+            }
+
+              Map resultadoMap = new HashMap();
+
+       /* Verificamos cual es la mayor de las dos fechas
+        */
+//       if (fechaFin.compareTo(fechaActual) > 0){
+            fechaMayor = fechaFin;
+            fechaMenor = fechaActual;
+//            }else{
+//                fechaMayor = fechaActual;
+//                fechaMenor = fechaFin;
+//            }
+
+      //los milisegundos
+       long diferenciaMils = fechaMayor.getTime() - fechaMenor.getTime();
+
+       //obtenemos los segundos
+       long segundos = diferenciaMils / 1000;
+
+       //obtenemos las horas
+       long horas = segundos / 3600;
+
+       //restamos las horas para continuar con minutos
+       segundos -= horas*3600;
+
+       //igual que el paso anterior
+       long minutos = segundos /60;
+       segundos -= minutos*60;
+
+       //ponemos los resultados en un mapa
+       resultadoMap.put("horas",Long.toString(horas));
+       resultadoMap.put("minutos",Long.toString(minutos));
+       resultadoMap.put("segundos",Long.toString(segundos)); 
+
+      
+       int pos=1;
+       String status="NO ENVIADO";
+        for (int i=0; i<competidoresE.size();i++){
+                if (competidoresE.get(i).getNameCompetitor().equals(Competidor)){
+                    Apuesta= competidoresE.get(i).getMax_amount();
+                    if ((Integer.parseInt(Apuesta)> apuestaU) && (apuestaU)>0){
+                        resultado=miMotor.agregarApuesta(evento.getName(), evento.getCategoryName(),competidoresE.get(i).getNameCompetitor(), pos, apuestaU, fechaActual, status, evento.getCategory_type());
+                        if (resultado){
+                             JOptionPane.showMessageDialog(this, "Apuesta Agregada",strTitle,JOptionPane.OK_OPTION);
+
+                        }
+            
+                    }
+                    else{
+                    JOptionPane.showMessageDialog(this, "Monto Errado: El monto permitido para este competidor debe estar comprendio entre 1 y" + " "+ Apuesta+ " "+ "BsF.",strTitle,JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+
+            }
+       
+  
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jButton1PropertyChange
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButton1PropertyChange
 
     /**
     * @param args the command line arguments

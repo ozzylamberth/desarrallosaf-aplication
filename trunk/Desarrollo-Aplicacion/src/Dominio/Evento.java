@@ -109,8 +109,8 @@ public class Evento {
     public String getDate_fin() {
      
         Calendar calen =Calendar.getInstance();  //CAMBIO FORMATO
-            //calen.setTime(date_fin.getDate()); //CAMBIO FORMATO // deja!
-            calen.setTime(date_fin);    //debug
+            //calen.setTime(date_fin.getDate()); //CAMBIO FORMATO 
+            calen.setTime(date_fin);    
 
             String Dia = String.valueOf(calen.get(Calendar.DAY_OF_MONTH));//CAMBIO FORMATO
             String Mes = String.valueOf(calen.get(Calendar.MONTH)+1);// CAMBIO FORMATO

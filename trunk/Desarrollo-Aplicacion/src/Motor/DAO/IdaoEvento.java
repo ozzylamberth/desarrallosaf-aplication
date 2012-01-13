@@ -17,12 +17,6 @@ public interface IdaoEvento {
 
 
 
-    /**
-     * firma para agregar un Evento nuevo
-     * @param Evento objeto Evento agregar
-     * @return valor boleano con la condicion de exito
-     */
-    public ListaEventos DaoEventoXML();
 
     /**
      * firma para buscar un Evento
@@ -31,23 +25,10 @@ public interface IdaoEvento {
      */
     public Evento buscarEvento(String name);
 
+   
     /**
-     * firma para actualizar un Evento
-     * @param Evento objeto Evento a actualizar
-     * @return valor boleano con la condicion de exito
-     */
-    public boolean actualizarEvento(Evento evento);
-
-    /**
-     * firma para borrar un Evento
-     * @param name nombre  del Evento a borrar
-     * @return valor boleano con la condicion de exito
-     */
-    public boolean borrarEvento(String name);
-
-    /**
-     * firma para obtener todos los eventos
+     * firma para obtener todos los eventos del XML
      * @return ArrayList con todos los objetos eventos
      */
-    public ListaEventos todosLosEventos();
+    public ArrayList<Evento> todosLosEventos();
 }

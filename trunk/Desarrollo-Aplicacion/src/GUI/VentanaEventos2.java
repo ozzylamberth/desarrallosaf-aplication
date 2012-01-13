@@ -15,9 +15,18 @@ import Dominio.Competidor;
 import Dominio.Evento;
 import Interface.InterfaceEnlace;
 import Interface.Motor;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import org.apache.log4j.Logger;
 
 
@@ -28,9 +37,13 @@ import org.apache.log4j.Logger;
 public class VentanaEventos2 extends javax.swing.JFrame {
     private final static Logger log = Logger.getLogger(VentanaEventos2.class);
 
+
     private String strTitle = "Eventos-Gamble´s Sport";
     private static InterfaceEnlace miMotor = Motor.getMotorImplementacion();
     private String eventoActual="";
+    private String competidorActual="";
+    private String pos="";
+    private String apuesta="";
 
     /** Creates new form VentanaEventos2 */
     public VentanaEventos2() {
@@ -42,6 +55,15 @@ public class VentanaEventos2 extends javax.swing.JFrame {
         initComponents();
         mostrarTabla();
         
+
+      jTablaEventos.getModel().addTableModelListener(new TableModelListener() {
+
+      public void tableChanged(TableModelEvent e) {
+         jTablaEventos.getModel().getValueAt(e.getFirstRow(), e.getColumn());
+      }
+    });
+
+        
     }
 
 
@@ -51,6 +73,7 @@ public class VentanaEventos2 extends javax.swing.JFrame {
         dm.addColumn("Competidores");
         dm.addColumn("Máxima Apuesta");
         dm.addColumn("Posicion");
+        dm.addColumn("Monto a Apostar");
         Evento elEvento = miMotor.buscarEvento(eventoActual);
         ArrayList<Competidor> competidores = new ArrayList<Competidor>();
         competidores = elEvento.getNameCompetitor();
@@ -58,6 +81,7 @@ public class VentanaEventos2 extends javax.swing.JFrame {
             Vector row = new Vector();
             row.add(competidores.get(i).getNameCompetitor());
             row.add(competidores.get(i).getMax_amount());
+            
             dm.addRow(row);
 
         }
@@ -93,6 +117,7 @@ public class VentanaEventos2 extends javax.swing.JFrame {
         jTablaEventos = new javax.swing.JTable();
         jRegresar = new javax.swing.JButton();
         jNick = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -123,6 +148,11 @@ public class VentanaEventos2 extends javax.swing.JFrame {
                 jTablaEventosMouseReleased(evt);
             }
         });
+        jTablaEventos.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTablaEventosPropertyChange(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTablaEventos);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -138,10 +168,10 @@ public class VentanaEventos2 extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE))
         );
 
-        jPanel3.setBounds(30, 150, 710, 360);
+        jPanel3.setBounds(20, 120, 710, 340);
         jLayeredPane2.add(jPanel3, javax.swing.JLayeredPane.DRAG_LAYER);
 
         jRegresar.setText("Regresar");
@@ -157,6 +187,23 @@ public class VentanaEventos2 extends javax.swing.JFrame {
         jNick.setForeground(new java.awt.Color(204, 255, 255));
         jNick.setBounds(650, 20, 120, 30);
         jLayeredPane2.add(jNick, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButton1.setBackground(new java.awt.Color(0, 102, 51));
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Apostar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jButton1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jButton1PropertyChange(evt);
+            }
+        });
+        jButton1.setBounds(243, 471, 170, 60);
+        jLayeredPane2.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane2.setBounds(10, 0, 760, 560);
         jLayeredPane1.add(jLayeredPane2, javax.swing.JLayeredPane.DRAG_LAYER);
@@ -204,6 +251,10 @@ public class VentanaEventos2 extends javax.swing.JFrame {
 
     private void jTablaEventosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaEventosMouseReleased
         //         TODO add your handling code here:
+         
+
+ 
+
        
 }//GEN-LAST:event_jTablaEventosMouseReleased
 
@@ -225,6 +276,125 @@ public class VentanaEventos2 extends javax.swing.JFrame {
         this.dispose();
 }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        boolean resultado = false;
+        Date fechaMayor;
+        Date fechaMenor;
+        String Nombre = eventoActual;
+        String competidor = competidorActual;
+        String posicion = pos;
+        String Apuesta = "";
+        Evento evento = new Evento();
+        evento = miMotor.buscarEvento(Nombre);
+        String fechaF = evento.getDate_fin();
+        String fechaI = evento.getDate_ini();
+        ArrayList<Competidor> competidoresE = new ArrayList<Competidor>();
+        competidoresE = evento.getNameCompetitor();
+        Date fechaActual = new Date();
+        SimpleDateFormat formateador = new SimpleDateFormat("hh:mm:ss");
+        formateador.format(fechaActual);
+        SimpleDateFormat sdf;
+        sdf = new SimpleDateFormat("dd-M-yyyy"  );
+        Date fechaFin = null;
+        try {
+            fechaFin = sdf.parse(fechaF);//Cambio Fecha en Formato DATE
+            SimpleDateFormat formateador2 = new SimpleDateFormat("hh:mm:ss");
+            formateador2.format(fechaFin);
+            fechaFin.setHours(23);
+            fechaFin.setMinutes(59);
+            fechaFin.setSeconds(00);
+        } catch (ParseException ex) {
+
+            log.error("Problemas con la fecha",ex);
+        }
+
+        SimpleDateFormat sdf2;
+        sdf2 = new SimpleDateFormat("dd-M-yyyy"  );
+        Date fechaInicio = null;
+        try {
+            fechaInicio = sdf2.parse(fechaI);//Cambio Fecha en Formato DATE
+            SimpleDateFormat formateador3 = new SimpleDateFormat("hh:mm:ss");
+            formateador3.format(fechaInicio);
+            fechaInicio.setHours(8);
+            fechaInicio.setMinutes(00);
+            fechaInicio.setSeconds(00);
+        } catch (ParseException ex) {
+
+            log.error("Problemas con la fecha ",ex);
+        }
+
+        Map resultadoMap = new HashMap();
+
+       /* Verificamos cual es la mayor de las dos fechas
+        */
+        //       if (fechaFin.compareTo(fechaActual) > 0){
+        fechaMayor = fechaFin;
+        fechaMenor = fechaActual;
+        //            }else{
+        //                fechaMayor = fechaActual;
+        //                fechaMenor = fechaFin;
+        //            }
+
+        //los milisegundos
+        long diferenciaMils = fechaMayor.getTime() - fechaMenor.getTime();
+
+        //obtenemos los segundos
+        long segundos = diferenciaMils / 1000;
+
+        //obtenemos las horas
+        long horas = segundos / 3600;
+
+        //restamos las horas para continuar con minutos
+        segundos -= horas*3600;
+
+        //igual que el paso anterior
+        long minutos = segundos /60;
+        segundos -= minutos*60;
+
+        //ponemos los resultados en un mapa
+        resultadoMap.put("horas",Long.toString(horas));
+        resultadoMap.put("minutos",Long.toString(minutos));
+        resultadoMap.put("segundos",Long.toString(segundos));
+
+
+        
+        String status="NO ENVIADO";
+        for (int i=0; i<competidoresE.size();i++){
+            if (competidoresE.get(i).getNameCompetitor().equals(competidor)){
+                Apuesta= competidoresE.get(i).getMax_amount();
+                if ((Integer.parseInt(Apuesta)> Integer.parseInt(apuesta)) && (Integer.parseInt(apuesta)>0)){
+                    resultado=miMotor.agregarApuesta(evento.getName(), evento.getCategoryName(),competidoresE.get(i).getNameCompetitor(), Integer.parseInt(pos), Integer.parseInt(apuesta), fechaActual, status, evento.getCategory_type());
+                    if (resultado){
+                        JOptionPane.showMessageDialog(this, "Apuesta Agregada",strTitle,JOptionPane.OK_OPTION);
+
+                    }
+
+                } else{
+                    JOptionPane.showMessageDialog(this, "Monto Errado: El monto permitido para este competidor debe estar comprendio entre 1 y" + " "+ Apuesta+ " "+ "BsF.",strTitle,JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jButton1PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1PropertyChange
+
+    private void jTablaEventosPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTablaEventosPropertyChange
+        // TODO add your handling code here:
+//        int row = this.jTablaEventos.getSelectedRow();
+//         competidorActual= (String) this.jTablaEventos.getModel().getValueAt(row, 0);
+//          pos = (String) jTablaEventos.getModel().getValueAt(row, 2);
+//          apuesta = (String) jTablaEventos.getModel().getValueAt(row, 3);
+        
+
+
+    }//GEN-LAST:event_jTablaEventosPropertyChange
+
     /**
     * @param args the command line arguments
     */
@@ -237,6 +407,7 @@ public class VentanaEventos2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;

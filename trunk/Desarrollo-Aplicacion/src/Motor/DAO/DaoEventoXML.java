@@ -4,30 +4,23 @@
  */
 
 package Motor.DAO;
-import Dominio.Categoria;
+
 import Dominio.Competidor;
-import Dominio.Evento;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.jdom.Document;
 import org.jdom.Element;
-import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
-import org.jdom.output.XMLOutputter;
 import Dominio.Evento;
 import Dominio.ListaEventos;
-import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
 
 /**
  *
  * @author RS
  */
-public class DaoEventoXML {
+public class DaoEventoXML implements IdaoEvento {
 
 
 /** variable que contiene la raiz del documento Xml*/
