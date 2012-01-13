@@ -55,13 +55,11 @@
       <competitor>
         <nameCompetitor>Canua</nameCompetitor>
         <max_amount>11</max_amount>
-        
-      </competitor>
+        </competitor>
       <competitor>
         <nameCompetitor>Sephora</nameCompetitor>
         <max_amount>12</max_amount>
-        
-      </competitor>
+        </competitor>
     </competitors>
   </event>
   <event>
