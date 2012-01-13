@@ -106,9 +106,11 @@ public class DaoEventoXML {
     }
 public Evento buscarEvento(String nombre)
 {
+    String nom = "";
+    nom=nombre;
     Evento evento = new Evento();
     for(int i = 0; i < eventoR.size(); i++){
-        if (eventoR.get(i).getName()== nombre){
+        if (eventoR.get(i).getName().equals(nom)){
             evento = eventoR.get(i);
         }
        }

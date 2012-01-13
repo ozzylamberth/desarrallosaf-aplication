@@ -169,6 +169,11 @@ public class VentanaApuestas extends javax.swing.JFrame {
 
         jMasCategorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/more.png"))); // NOI18N
         jMasCategorias.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 102, 51), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 102, 51)));
+        jMasCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMasCategoriasActionPerformed(evt);
+            }
+        });
         jMasCategorias.setBounds(300, 320, 190, 110);
         jLayeredPane1.add(jMasCategorias, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -267,6 +272,13 @@ public class VentanaApuestas extends javax.swing.JFrame {
         evento.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jNbaActionPerformed
+
+    private void jMasCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMasCategoriasActionPerformed
+        // TODO add your handling code here:
+        VentanaCategoria categorias = new VentanaCategoria();
+        categorias.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMasCategoriasActionPerformed
 
     /**
     * @param args the command line arguments
