@@ -1,6 +1,7 @@
 
 package Interface;
 
+import Dominio.Evento;
 import Dominio.Usuario;
 import java.util.*;
 
@@ -10,13 +11,23 @@ import java.util.*;
  */
 public interface InterfaceEnlace
 {
+    /**
+ * Firma para obtener todos los eventos
+ * @param
+ * @return ArrayList con todos los eventos
+ */
+ public ArrayList<Evento> todosLosEventos();
+
+
+ public Evento buscarEvento(String name);
 
 /** Firma para crear un Usuario nuevo
  * @param nombre, apellido, sexo, nick, password, fecha de nacimiento del usuario
  * @return boolean inidicando si se pudo agregar o no el juegador en el motor
 */
- public boolean crearUsuario(String nombreUsuario,String apellidoUsuario,String nickUsuario,String sexoAvatarUsuario,Date fechaNacimientoUsuario,String passwordUsuario)
+ public boolean crearUsuario(String nombreUsuario,String apellidoUsuario,String nickUsuario,String sexo,String passwordUsuario,Date fechaNacimientoUsuario,int status)
  throws CreateUserException;
+   
 /**
  * Firma para eliminar un Usuario existente
  * @param nick y password del Usuario a eliminar
@@ -51,9 +62,9 @@ public String obtenerNickUsuario(String player);
 /**
  * Firma para obtener la fecha de nacimiento de un Usuario
  * @param String indicando el Usuario del cual se quiere obtener la fecha de Nacimiento
- * @return Date con la fecha de nacimiento del Usuario
+ * @return String con la fecha de nacimiento del Usuario
 */
-public Date obtenerFechaNacimientoUsuario(String player);
+public String obtenerFechaNacimientoUsuario(String player);
 
 /**
  * Firma para obtener el path del avatar de un juegador

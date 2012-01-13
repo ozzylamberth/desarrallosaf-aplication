@@ -3,28 +3,27 @@
  * and open the template in the editor.
  */
 
-/*
- * VentanaNuevoUsuario.java
- *
- * Created on 03/01/2012, 07:55:04 PM
- */
 
 package GUI;
 
 import Interface.CreateUserException;
 import Motor.ControladorUsuario;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+//import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author Patricia
  */
 public class VentanaNuevoUsuario extends javax.swing.JFrame {
-    private String strTitle;
+    private final static Logger log = Logger.getLogger(VentanaNuevoUsuario.class);
+    private String strTitle= "Usuarios-Gamble´s Sport";
 
     /** Creates new form VentanaNuevoUsuario */
     public VentanaNuevoUsuario() {
@@ -56,19 +55,20 @@ public class VentanaNuevoUsuario extends javax.swing.JFrame {
         jAgregar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         nSexo = new javax.swing.JComboBox();
+        jLabel8 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dice-800.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondo.png"))); // NOI18N
         jLabel1.setBounds(0, 0, 810, 550);
         jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLabel1.getAccessibleContext().setAccessibleName("Nuevo Usuario");
         jLabel1.getAccessibleContext().setAccessibleParent(this);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nuevo Usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nuevo Usuario", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 24), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(470, 430));
         jPanel1.setOpaque(false);
@@ -99,16 +99,17 @@ public class VentanaNuevoUsuario extends javax.swing.JFrame {
         jLabel5.setMaximumSize(new java.awt.Dimension(100, 14));
         jLabel5.setMinimumSize(new java.awt.Dimension(100, 100));
 
-        nNombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        nNombre.setFont(new java.awt.Font("Tahoma", 0, 24));
+        nNombre.setMaximumSize(new java.awt.Dimension(10, 10));
         nNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nNombreActionPerformed(evt);
             }
         });
 
-        nApellido.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        nApellido.setFont(new java.awt.Font("Tahoma", 0, 24));
 
-        nNickname.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        nNickname.setFont(new java.awt.Font("Tahoma", 0, 24));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -118,10 +119,17 @@ public class VentanaNuevoUsuario extends javax.swing.JFrame {
 
         nFecha.setBackground(new java.awt.Color(255, 255, 255));
         nFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 51)));
+        nFecha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         nFecha.setDateFormatString("dd-MM-yyyy");
-        nFecha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        nFecha.setFocusable(false);
+        nFecha.setFont(new java.awt.Font("Tahoma", 0, 18));
+        nFecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                nFechaPropertyChange(evt);
+            }
+        });
 
-        jAgregar.setBackground(new java.awt.Color(0, 102, 51));
+        jAgregar.setBackground(new java.awt.Color(0, 0, 0));
         jAgregar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jAgregar.setForeground(new java.awt.Color(255, 255, 255));
         jAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Red-Casino-Chips-32.png"))); // NOI18N
@@ -137,7 +145,7 @@ public class VentanaNuevoUsuario extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Sexo");
 
-        nSexo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        nSexo.setFont(new java.awt.Font("Tahoma", 0, 18));
         nSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Femenino", " " }));
         nSexo.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
@@ -155,34 +163,34 @@ public class VentanaNuevoUsuario extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(135, Short.MAX_VALUE)
-                .addComponent(jAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(103, Short.MAX_VALUE)
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(nPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nSexo, 0, 220, Short.MAX_VALUE)
-                                    .addComponent(nNickname, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                                    .addComponent(nApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                                    .addComponent(nFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                                    .addComponent(nNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))))))
-                .addGap(24, 24, 24))
+                        .addContainerGap()
+                        .addComponent(jAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addContainerGap(103, Short.MAX_VALUE)
+                            .addComponent(jLabel6)
+                            .addGap(18, 18, 18)
+                            .addComponent(nPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(101, 101, 101)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel7))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(nSexo, 0, 220, Short.MAX_VALUE)
+                                        .addComponent(nNickname, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                                        .addComponent(nApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                                        .addComponent(nFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                                        .addComponent(nNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)))))))
+                .addGap(44, 44, 44))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,18 +218,26 @@ public class VentanaNuevoUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(nPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
+                .addGap(44, 44, 44)
                 .addComponent(jAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addContainerGap())
         );
 
-        jPanel1.setBounds(340, 10, 450, 530);
+        jPanel1.setBounds(360, 10, 430, 530);
         jLayeredPane1.add(jPanel1, javax.swing.JLayeredPane.DRAG_LAYER);
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UsuariodelMes.png"))); // NOI18N
+        jLabel8.setBounds(-20, 120, 400, 380);
+        jLayeredPane1.add(jLabel8, javax.swing.JLayeredPane.DRAG_LAYER);
+
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
+        jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 24));
 
         jMenu1.setText("Options");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, 0));
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setBackground(new java.awt.Color(255, 255, 255));
+        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 0, 24));
         jMenuItem1.setText("Regresar");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -242,7 +258,7 @@ public class VentanaNuevoUsuario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
         );
 
         pack();
@@ -250,58 +266,92 @@ public class VentanaNuevoUsuario extends javax.swing.JFrame {
 
     private void nNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nNombreActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_nNombreActionPerformed
 
     private void jAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgregarActionPerformed
         // TODO add your handling code here:
         if(nPassword.getText().isEmpty()== false && nNombre.getText().isEmpty()== false && nApellido.getText().isEmpty()== false && nNickname.getText().isEmpty()==false)
         {
+            
             boolean resultado = false;
             String password = this.nPassword.getText();
             String nombre = this.nNombre.getText();
             String apellido = this.nApellido.getText();
-            String sexo = this.nSexo.getName();
+            String sexo = (String) this.nSexo.getSelectedItem();
             Calendar calen =Calendar.getInstance();  //CAMBIO FORMATO
             calen.setTime(nFecha.getDate()); //CAMBIO FORMATO
             String Dia = String.valueOf(calen.get(Calendar.DAY_OF_MONTH));//CAMBIO FORMATO
             String Mes = String.valueOf(calen.get(Calendar.MONTH)+1);// CAMBIO FORMATO
             String Año = String.valueOf(calen.get(Calendar.YEAR));//CAMBIO FORMATO
-            String fecha =Dia+"-"+Mes+"-"+Año;//CAMBIA FORMATO
+            String fecha =Dia+"-"+Mes+"-"+Año;//CAMBIA FORMATO*/
             String nickname = this.nNickname.getText();
-
+            SimpleDateFormat sdf;
+            sdf = new SimpleDateFormat(  "dd-MM-yyyy"  );
+            Date fechan = null;
             try {
-                String[] campos = fecha.split("/");
-                int year = Integer.parseInt(campos[2]);
-                int month = Integer.parseInt(campos[1]);
-                int day = Integer.parseInt(campos[0]);
-                Date fechaN = new Date(year, month, day);
-                resultado = ControladorUsuario.crearUsuario(nombre, apellido, nickname, sexo, fechaN, password);
-            } catch (CreateUserException ex) {
-                Logger.getLogger(VentanaNuevoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                fechan = sdf.parse(fecha);//Cambio Fecha en Formato DATE
+            } catch (ParseException ex) {
+                //Logger.getLogger(VentanaNuevoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                log.error("Problemas con la fecha de nacimiento");
             }
+             Date fechaActual = new Date();
+             int edad=0;
+             int factor=0;
+             if (fechaActual.getMonth() <= fechan.getMonth()) {
+                if (fechaActual.getMonth() == fechan.getMonth()) {
+                    if (fechaActual.getDay() > fechan.getDay()) {
+                        factor = -1; //Aun no celebra su cumpleaÃ±os
+                        }
+                    } else {
+                        factor = -1; //Aun no celebra su cumpleaÃ±os
+                       }
+                   }
+              edad=(fechaActual.getYear()-fechan.getYear())+factor;
 
-            if (resultado) {
-                JOptionPane.showMessageDialog(null, "Usuario " + nombre + "-" +nickname+ " agregada con exito", "Agregada",
+              if (edad < 18) {
+                JOptionPane.showMessageDialog(this, "Lo sentimos debes ser mayor de 18 años para poder ingresar",strTitle,JOptionPane.ERROR_MESSAGE);
+
+              }
+              else
+
+                  if ((nombre.length()>10)  | (apellido.length()>10)  | nickname.length()>8){
+                    if (nombre.length()>10){
+                        JOptionPane.showMessageDialog(this, "Nombre Invalido",strTitle,JOptionPane.ERROR_MESSAGE);
+                        }
+                    if (apellido.length()>10){
+                    JOptionPane.showMessageDialog(this, "Apellido Invalido",strTitle,JOptionPane.ERROR_MESSAGE);
+                        }
+                    if (nickname.length()>8){
+                    JOptionPane.showMessageDialog(this, "Nickname Invalido",strTitle,JOptionPane.ERROR_MESSAGE);
+                        }
+            }
+        else{
+                try {
+                    int status = 1;
+                    resultado = ControladorUsuario.crearUsuario(nombre, apellido, nickname, sexo,password, fechan,status);
+                } catch (CreateUserException ex) {
+                //Logger.getLogger(VentanaNuevoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                    log.error("No se pudo añadir el nuevo Usuario");
+                }
+                if (resultado) {
+                JOptionPane.showMessageDialog(null, "Usuario " + nombre + "-" +nickname+ " agregada con exito", strTitle,
                         JOptionPane.INFORMATION_MESSAGE);
-
-            }else{
-                JOptionPane.showMessageDialog(null, "Operacion Fallida  ingrese otro Nickname  no existente","Error",JOptionPane.INFORMATION_MESSAGE);
-
+                }else{
+                       JOptionPane.showMessageDialog(this, "Operacion Fallida:  El nick de Usuario no esta disponible",strTitle,JOptionPane.ERROR_MESSAGE);
+                }
             }
-
-
         }
-
-
         else {
             JOptionPane.showMessageDialog(this, "Complete todos los Campos", strTitle, JOptionPane.ERROR_MESSAGE);
-            JOptionPane.showMessageDialog(null, "Operación Fallida", "Acción Anulada",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Operación Fallida", strTitle,JOptionPane.ERROR_MESSAGE);
         }
         nNombre.setText("");
         nApellido.setText("");
         nFecha.setCalendar(null);
         nNickname.setText("");
         nPassword.setText("");
+    
         
 }//GEN-LAST:event_jAgregarActionPerformed
 
@@ -313,12 +363,17 @@ public class VentanaNuevoUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nSexoComponentAdded
 
+    private void nFechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_nFechaPropertyChange
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_nFechaPropertyChange
+
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         VentanaMenu menu = new VentanaMenu();
         menu.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+}//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
     * @param args the command line arguments
@@ -340,6 +395,7 @@ public class VentanaNuevoUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;

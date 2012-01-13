@@ -6,6 +6,7 @@
 package GUI;
 
 import GUI.VentanaHome;
+import Motor.VerificarConexion;
 
 /**
  *
@@ -18,6 +19,8 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        VerificarConexion hilo = new VerificarConexion();
+        hilo.start();
         VentanaHome home = new VentanaHome();
         home.setVisible(true);
     }

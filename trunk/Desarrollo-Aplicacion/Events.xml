@@ -1,0 +1,90 @@
+<events>
+  <event>
+    <name>Champion</name>
+    <categoryName>Futbol</categoryName>
+    <category_type>VS</category_type>
+    <date_ini>2012-01-03</date_ini>
+    <date_fin>2012-01-12</date_fin>
+    <winner></winner>
+    <administratorName>Raymy</administratorName>
+    <lastname>Sotillo</lastname>
+    <ci>18028292</ci>
+    <competitors>
+      <competitor>
+        <nameCompetitor>bayer</nameCompetitor>
+        <max_amount>50</max_amount>
+      </competitor>
+      <competitor>
+        <nameCompetitor>real</nameCompetitor>
+        <max_amount>80</max_amount>
+      </competitor>
+    </competitors>
+  </event>
+  <event>
+    <name>Super Copa</name>
+    <categoryName>Futbol</categoryName>
+    <category_type>VS</category_type>
+    <date_ini>2012-01-10</date_ini>
+    <date_fin>2012-01-27</date_fin>
+    <winner></winner>
+    <administratorName>Raymy</administratorName>
+    <lastname>Sotillo</lastname>
+    <ci>18028292</ci>
+    <competitors>
+      <competitor>
+        <nameCompetitor>Juve</nameCompetitor>
+        <max_amount>44</max_amount>
+      </competitor>
+      <competitor>
+        <nameCompetitor>fiore</nameCompetitor>
+        <max_amount>43</max_amount>
+      </competitor>
+    </competitors>
+  </event>
+  <event>
+    <name>5ta Valida</name>
+    <categoryName>Horses</categoryName>
+    <category_type>Competition</category_type>
+    <date_ini>2012-01-03</date_ini>
+    <date_fin>2012-01-26</date_fin>
+    <winner></winner>
+    <administratorName>Raymy</administratorName>
+    <lastname>Sotillo</lastname>
+    <ci>18028292</ci>
+    <competitors>
+      <competitor>
+        <nameCompetitor>Canua</nameCompetitor>
+        <max_amount>11</max_amount>
+        
+      </competitor>
+      <competitor>
+        <nameCompetitor>Sephora</nameCompetitor>
+        <max_amount>12</max_amount>
+        
+      </competitor>
+    </competitors>
+  </event>
+  <event>
+    <name>Gran copa</name>
+    <categoryName>Futbol</categoryName>
+    <category_type>VS</category_type>
+    <date_ini>2012-01-19</date_ini>
+    <date_fin>2012-01-29</date_fin>
+    <winner></winner>
+    <administratorName>Raymy</administratorName>
+    <lastname>Sotillo</lastname>
+    <ci>18028292</ci>
+    <competitors>
+      <competitor>
+        <nameCompetitor>Arsenal</nameCompetitor>
+        <max_amount>12</max_amount>
+       
+      </competitor>
+      <competitor>
+        <nameCompetitor>Barcelona</nameCompetitor>
+        <max_amount>18</max_amount>
+       
+      </competitor>
+    </competitors>
+  </event>
+</events>

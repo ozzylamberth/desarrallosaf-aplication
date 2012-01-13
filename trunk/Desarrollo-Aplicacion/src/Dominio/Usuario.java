@@ -19,19 +19,22 @@ public class Usuario {
     private Date fechaNacimientoUsuario;
     private String sexo;
     private String passwordUsuario;
+    private int status;
 
-    public Usuario(String nombreUsuario, String apellidoUsuario, String nickUsuario, Date fechaNacimientoUsuario, String sexo, String passwordUsuario) {
+    public Usuario() {
+        
+    }
+
+    public Usuario(String nombreUsuario, String apellidoUsuario, String nickUsuario, Date fechaNacimientoUsuario, String sexo, String passwordUsuario, int status) {
         this.nombreUsuario = nombreUsuario;
         this.apellidoUsuario = apellidoUsuario;
         this.nickUsuario = nickUsuario;
         this.fechaNacimientoUsuario = fechaNacimientoUsuario;
         this.sexo = sexo;
         this.passwordUsuario = passwordUsuario;
+        this.status = status;
     }
 
-    public Usuario() {
-        
-    }
 
     public String getApellidoUsuario() {
         return apellidoUsuario;
@@ -79,6 +82,14 @@ public class Usuario {
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
 }
