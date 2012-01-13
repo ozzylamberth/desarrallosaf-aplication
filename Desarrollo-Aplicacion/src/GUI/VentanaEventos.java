@@ -97,10 +97,10 @@ public class VentanaEventos extends javax.swing.JFrame {
         Evento eventoMostrar = this.miMotor.buscarEvento(name);
 
         this.jNombre.setText(eventoMostrar.getName());
-        this.jRif.setText(eventoMostrar.getCategoryName());
-        this.jDireccion.setText(eventoMostrar.getDate_ini());
-        this.jTelefono.setText(eventoMostrar.getDate_fin());
-        this.jContacto.setText(eventoMostrar.getWinner());
+        this.jCategoria.setText(eventoMostrar.getCategoryName());
+        this.jFecha_ini.setText(eventoMostrar.getDate_ini());
+        this.jFecha_fin.setText(eventoMostrar.getDate_fin());
+        jComboBox1.removeAllItems();
         this.mostrarTablaCompetidores(eventoMostrar.getNameCompetitor());
        }
     private void mostrarTablaCompetidores(ArrayList<Competidor> competidores) throws ParseException {
@@ -109,11 +109,8 @@ public class VentanaEventos extends javax.swing.JFrame {
         dm.addColumn("Apuesta Maxima");
         int cont =0;
         for (Competidor competidor : competidores) {
-              Vector row = new Vector();
-              row.add(competidor.getNameCompetitor());
-              row.add(competidor.getMax_amount());
-              dm.addRow(row);
-              this.jTablaCompetidores.setModel(dm);
+
+              jComboBox1.addItem(competidor.getNameCompetitor());
         }
             
     }
@@ -138,21 +135,18 @@ public class VentanaEventos extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jNombre = new javax.swing.JTextField();
-        jTelefono = new javax.swing.JTextField();
-        jRif = new javax.swing.JTextField();
-        jContacto = new javax.swing.JTextField();
-        jActualizar = new javax.swing.JButton();
-        jBorrar = new javax.swing.JButton();
-        jDireccion = new javax.swing.JTextField();
+        jFecha_fin = new javax.swing.JTextField();
+        jCategoria = new javax.swing.JTextField();
+        jFecha_ini = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTablaCompetidores = new javax.swing.JTable();
+        jComboBox1 = new javax.swing.JComboBox();
+        jLabel8 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablaEventos = new javax.swing.JTable();
         jRegresar = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
         jNick = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTablaCompetidores = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -173,19 +167,18 @@ public class VentanaEventos extends javax.swing.JFrame {
         jPanel1.setOpaque(false);
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Nombre");
+        jLabel3.setText("Nombre:");
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Dirección");
+        jLabel4.setText("Fecha Inicio:");
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Teléfono");
+        jLabel5.setText("Fecha Fin:");
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("RIF");
+        jLabel6.setText("Categoria:");
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Contacto");
 
         jNombre.setBackground(new java.awt.Color(102, 102, 102));
         jNombre.setEnabled(false);
@@ -195,30 +188,45 @@ public class VentanaEventos extends javax.swing.JFrame {
             }
         });
 
-        jActualizar.setText("Actualizar");
-        jActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jActualizarActionPerformed(evt);
-            }
-        });
+        jFecha_fin.setBackground(new java.awt.Color(102, 102, 102));
+        jFecha_fin.setEnabled(false);
 
-        jBorrar.setText("Borrar");
-        jBorrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBorrarActionPerformed(evt);
+        jCategoria.setBackground(new java.awt.Color(102, 102, 102));
+        jCategoria.setEnabled(false);
+
+        jFecha_ini.setBackground(new java.awt.Color(102, 102, 102));
+        jFecha_ini.setEnabled(false);
+
+        jTablaCompetidores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jTablaCompetidores.setEnabled(false);
+        jTablaCompetidores.setRowHeight(40);
+        jTablaCompetidores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTablaCompetidoresMouseReleased(evt);
             }
         });
+        jScrollPane2.setViewportView(jTablaCompetidores);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
+
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Competidores:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jActualizar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(jBorrar)
-                .addGap(48, 48, 48))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,14 +234,15 @@ public class VentanaEventos extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                    .addComponent(jRif, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                    .addComponent(jTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                    .addComponent(jDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                    .addComponent(jNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))
+                    .addComponent(jCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                    .addComponent(jFecha_fin, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                    .addComponent(jFecha_ini, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                    .addComponent(jNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                    .addComponent(jComboBox1, 0, 163, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -246,27 +255,27 @@ public class VentanaEventos extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
-                    .addComponent(jDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFecha_ini, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFecha_fin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
-                    .addComponent(jRif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(jContacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBorrar)
-                    .addComponent(jActualizar))
-                .addGap(33, 33, 33))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8)))
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
         );
 
-        jPanel1.setBounds(450, 130, 300, 310);
+        jPanel1.setBounds(450, 30, 300, 490);
         jLayeredPane2.add(jPanel1, javax.swing.JLayeredPane.DRAG_LAYER);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EVENTOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -317,46 +326,10 @@ public class VentanaEventos extends javax.swing.JFrame {
         jRegresar.setBounds(480, 570, 130, 50);
         jLayeredPane2.add(jRegresar, javax.swing.JLayeredPane.DRAG_LAYER);
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18));
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Usuario");
-        jLabel8.setBounds(590, 20, 70, 30);
-        jLayeredPane2.add(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         jNick.setFont(new java.awt.Font("Tahoma", 0, 18));
         jNick.setForeground(new java.awt.Color(204, 255, 255));
         jNick.setBounds(650, 20, 120, 30);
         jLayeredPane2.add(jNick, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18));
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Cerrar Sesión");
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabel9MousePressed(evt);
-            }
-        });
-        jLabel9.setBounds(590, 50, 120, 22);
-        jLayeredPane2.add(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jTablaCompetidores.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jTablaCompetidores.setRowHeight(40);
-        jTablaCompetidores.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jTablaCompetidoresMouseReleased(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jTablaCompetidores);
-
-        jScrollPane2.setBounds(280, 30, 210, 160);
-        jLayeredPane2.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane2.setBounds(10, 0, 780, 560);
         jLayeredPane1.add(jLayeredPane2, javax.swing.JLayeredPane.DRAG_LAYER);
@@ -411,61 +384,6 @@ public class VentanaEventos extends javax.swing.JFrame {
         this.dispose();
 }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNombreActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_jNombreActionPerformed
-
-    private void jActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jActualizarActionPerformed
-        // TODO add your handling code here:
-//        boolean resultado = false;
-//        String name = this.jNombre.getText();
-//        String categoryName = this.jTelefono.getText();
-//        String date_ini = this.jDireccion.getText();
-//        String date_fin = this.jRif.getText();
-//        String winner = this.jContacto.getText();
-//
-//        resultado = this.controlEvento.actualizarEvento(name, categoryName, date_ini, date_fin, winner);
-//        if (resultado) {
-//            JOptionPane.showMessageDialog(null, "Evento " + this.jNombre.getText() + " actualizado con exito", "Actualizado",
-//                    JOptionPane.INFORMATION_MESSAGE);
-//            this.mostrarTabla();
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Operacion Fallida", "Error",
-//                    JOptionPane.ERROR_MESSAGE);
-//        }
-    }//GEN-LAST:event_jActualizarActionPerformed
-
-    private void jBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBorrarActionPerformed
-        // TODO add your handling code here:
-        int UserOption = JOptionPane.showConfirmDialog(this, "Estas Seguro que desea Borrar este Evento?", strTitle, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (UserOption == JOptionPane.YES_OPTION) {
-            //if(){
-//            this.controlEvento.eliminarEvento(this.jNombre.getText());
-//            JOptionPane.showMessageDialog(null, "Agencia " + this.jNombre.getText() + " borrada con exito", "Borrada",
-//                    JOptionPane.INFORMATION_MESSAGE);
-//            this.mostrarTabla();
-
-            //}//Yes Option
-
-        }//Resultado
-        else {
-
-            JOptionPane.showMessageDialog(null, "Operación Cancelada", "Operación Nula",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-}//GEN-LAST:event_jBorrarActionPerformed
-
-    private void jTablaEventosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaEventosMouseReleased
-//         TODO add your handling code here:
-        int row = this.jTablaEventos.getSelectedRow();
-        String name = (String) this.jTablaEventos.getModel().getValueAt(row, 0);
-        try {
-            this.mostrarEvento(name);
-        } catch (ParseException ex) {
-            log.error("No se pudo mostrar los eventos");
-        }
-    }//GEN-LAST:event_jTablaEventosMouseReleased
-
     private void jRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegresarActionPerformed
         // TODO add your handling code here:
         //        VentanaBienvenida bienvenida=new VentanaBienvenida();
@@ -473,16 +391,24 @@ public class VentanaEventos extends javax.swing.JFrame {
         //        this.dispose();
 }//GEN-LAST:event_jRegresarActionPerformed
 
-    private void jLabel9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MousePressed
-        // TODO add your handling code here:
-        VentanaMenu menu = new VentanaMenu();
-        menu.setVisible(true);
-        this.dispose();
-}//GEN-LAST:event_jLabel9MousePressed
+    private void jTablaEventosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaEventosMouseReleased
+        //         TODO add your handling code here:
+        int row = this.jTablaEventos.getSelectedRow();
+        String name = (String) this.jTablaEventos.getModel().getValueAt(row, 0);
+        try {
+            this.mostrarEvento(name);
+        } catch (ParseException ex) {
+            log.error("No se pudo mostrar los eventos");
+        }
+}//GEN-LAST:event_jTablaEventosMouseReleased
 
     private void jTablaCompetidoresMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaCompetidoresMouseReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTablaCompetidoresMouseReleased
+}//GEN-LAST:event_jTablaCompetidoresMouseReleased
+
+    private void jNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNombreActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jNombreActionPerformed
 
     /**
     * @param args the command line arguments
@@ -496,10 +422,10 @@ public class VentanaEventos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jActualizar;
-    private javax.swing.JButton jBorrar;
-    private javax.swing.JTextField jContacto;
-    private javax.swing.JTextField jDireccion;
+    private javax.swing.JTextField jCategoria;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JTextField jFecha_fin;
+    private javax.swing.JTextField jFecha_ini;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -508,7 +434,6 @@ public class VentanaEventos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JMenu jMenu1;
@@ -519,12 +444,10 @@ public class VentanaEventos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JButton jRegresar;
-    private javax.swing.JTextField jRif;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTablaCompetidores;
     private javax.swing.JTable jTablaEventos;
-    private javax.swing.JTextField jTelefono;
     // End of variables declaration//GEN-END:variables
 
 }
