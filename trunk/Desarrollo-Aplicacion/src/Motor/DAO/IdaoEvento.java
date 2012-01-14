@@ -31,4 +31,5 @@ public interface IdaoEvento {
      * @return ArrayList con todos los objetos eventos
      */
     public ArrayList<Evento> todosLosEventos();
+
 }
