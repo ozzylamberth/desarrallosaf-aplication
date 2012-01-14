@@ -167,7 +167,7 @@ public class Evento {
                 fechan = sdf.parse(date);//Cambio Fecha en Formato DATE
             } catch (ParseException ex) {
                 //Logger.getLogger(VentanaNuevoUsuario.class.getName()).log(Level.SEVERE, null, ex);
-                log.error("Problemas con la fecha de nacimiento");
+                log.error("Problemas con la fecha de nacimiento" +ex);
             }
 
         this.date_ini = fechan;
