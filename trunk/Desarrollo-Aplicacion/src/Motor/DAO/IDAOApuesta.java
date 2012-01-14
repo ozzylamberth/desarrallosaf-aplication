@@ -17,6 +17,8 @@ public interface IDAOApuesta {
  * @param nombre, apellido, sexo, nick, password, fecha de nacimiento del usuario
  * @return boolean inidicando si se pudo agregar o no el usuario en el motor
 */
-public boolean agregarApuesta(String eventName,String categoryName,String competitor,int position,int apuestaU,Date fechaApuesta,String status, String categoryType);
+//public boolean agregarApuesta(String eventName,String categoryName,String competitor,int position,int apuestaU,Date fechaApuesta,String status, String categoryType);
+//
+//public boolean buscarApuesta(String Status);
 
 }

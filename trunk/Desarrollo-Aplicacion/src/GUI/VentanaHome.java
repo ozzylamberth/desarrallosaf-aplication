@@ -34,12 +34,21 @@ public class VentanaHome extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        jAdministrator = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jAdministrator.setText("Login Administrador");
+        jAdministrator.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAdministratorActionPerformed(evt);
+            }
+        });
+        jAdministrator.setBounds(40, 20, 140, 60);
+        jLayeredPane1.add(jAdministrator, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -76,10 +85,6 @@ public class VentanaHome extends javax.swing.JFrame {
         jButton2.setBounds(470, 430, 150, 110);
         jLayeredPane1.add(jButton2, javax.swing.JLayeredPane.DRAG_LAYER);
 
-        jButton3.setText("jButton3");
-        jButton3.setBounds(50, 40, 73, 23);
-        jLayeredPane1.add(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,6 +115,13 @@ public class VentanaHome extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jAdministratorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAdministratorActionPerformed
+        // TODO add your handling code here:
+        VentanaLogin login = new VentanaLogin();
+        login.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jAdministratorActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -122,9 +134,9 @@ public class VentanaHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jAdministrator;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     // End of variables declaration//GEN-END:variables

@@ -26,7 +26,7 @@ import org.apache.log4j.Logger;
 public class DAOUsuario implements IDAOUsuario {
 
 private final static Logger log = Logger.getLogger(DAOUsuario.class);
-public String bd = "PruebaJava";
+public String bd = "appdesa";
 public String login = "root";
 public String password = "";
 public String url = "jdbc:mysql://localhost/"+bd;
@@ -91,16 +91,15 @@ catch(ClassNotFoundException ex) {
         try {
             conectar();
             s = (Statement) conn.createStatement();
-            ResultSet v = s.executeQuery("Select Nombre,Apellido,Nick,sexo,Password,Fecha,Status from usuario WHERE Status=" + 1 +" AND Nick ='" + nickUsuario +"'");
+            ResultSet v = s.executeQuery("Select NOMBRE,APELLIDO,LOGIN,CI,PASSWORD from administrators WHERE LOGIN ='" + nickUsuario +"'");
             Usuario aux = new Usuario();
             while(v.next()) {
                aux.setNombreUsuario(v.getString(1));
                aux.setApellidoUsuario(v.getString(2));
                aux.setNickUsuario(v.getString(3));
-               aux.setSexo(v.getString(4));
-               aux.setPasswordUsuario(v.getString(5));
-               aux.setFechaNacimientoUsuario(v.getDate(6));
-               aux.setStatus(v.getInt(7));
+               aux.setCi(v.getInt(4));
+               aux.setPassword(v.getString(5));
+          
                 }
             return aux;
             }

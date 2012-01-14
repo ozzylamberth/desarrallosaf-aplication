@@ -15,6 +15,7 @@ import Dominio.Usuario;
 import Dominio.Evento;
 import Motor.ControladorUsuario;
 import java.lang.String;
+import org.apache.log4j.PropertyConfigurator;
 
 /**
  *
@@ -24,6 +25,12 @@ public class VentanaApuestas extends javax.swing.JFrame {
    
     private Evento eventoActual;
     private String categoria;
+    static {
+
+PropertyConfigurator.configure("log4j.properties");
+
+}
+
 
 
     /** Creates new form VentanaApuestas */

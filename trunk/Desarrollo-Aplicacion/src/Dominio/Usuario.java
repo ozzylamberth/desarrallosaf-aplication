@@ -16,25 +16,20 @@ public class Usuario {
     private String nombreUsuario;
     private String apellidoUsuario;
     private String nickUsuario;
-    private Date fechaNacimientoUsuario;
-    private String sexo;
-    private String passwordUsuario;
-    private int status;
+    private int ci;
+    private String password;
 
     public Usuario() {
         
     }
 
-    public Usuario(String nombreUsuario, String apellidoUsuario, String nickUsuario, Date fechaNacimientoUsuario, String sexo, String passwordUsuario, int status) {
+    public Usuario(String nombreUsuario, String apellidoUsuario, String nickUsuario, int ci, String password) {
         this.nombreUsuario = nombreUsuario;
         this.apellidoUsuario = apellidoUsuario;
         this.nickUsuario = nickUsuario;
-        this.fechaNacimientoUsuario = fechaNacimientoUsuario;
-        this.sexo = sexo;
-        this.passwordUsuario = passwordUsuario;
-        this.status = status;
+        this.ci = ci;
+        this.password = password;
     }
-
 
     public String getApellidoUsuario() {
         return apellidoUsuario;
@@ -44,12 +39,12 @@ public class Usuario {
         this.apellidoUsuario = apellidoUsuario;
     }
 
-    public Date getFechaNacimientoUsuario() {
-        return fechaNacimientoUsuario;
+    public int getCi() {
+        return ci;
     }
 
-    public void setFechaNacimientoUsuario(Date fechaNacimientoUsuario) {
-        this.fechaNacimientoUsuario = fechaNacimientoUsuario;
+    public void setCi(int ci) {
+        this.ci = ci;
     }
 
     public String getNickUsuario() {
@@ -68,29 +63,15 @@ public class Usuario {
         this.nombreUsuario = nombreUsuario;
     }
 
-    public String getPasswordUsuario() {
-        return passwordUsuario;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswordUsuario(String passwordUsuario) {
-        this.passwordUsuario = passwordUsuario;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
+    
 
 }
    

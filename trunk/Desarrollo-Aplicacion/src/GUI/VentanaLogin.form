@@ -191,17 +191,11 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="nNick">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="elsoty"/>
-              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nNickActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JPasswordField" name="nPassword">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="11"/>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>

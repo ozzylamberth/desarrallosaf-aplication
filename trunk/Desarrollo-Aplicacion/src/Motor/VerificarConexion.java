@@ -15,6 +15,8 @@ import Motor.DAO.IdaoEvento;
 import java.io.File;
 import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
 
 
 public class VerificarConexion extends Thread {
@@ -23,6 +25,12 @@ public class VerificarConexion extends Thread {
     private final static Logger log = Logger.getLogger(VerificarConexion.class);
     int espera = 0;
     private boolean continuar = true;
+    static {
+
+PropertyConfigurator.configure("log4j.properties");
+
+}
+
 
  /**
  * firma para crear hilo en espera de conexion de pendrive
