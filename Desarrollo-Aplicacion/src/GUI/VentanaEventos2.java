@@ -260,9 +260,9 @@ public class VentanaEventos2 extends javax.swing.JFrame {
 
     private void jRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegresarActionPerformed
         // TODO add your handling code here:
-        //        VentanaBienvenida bienvenida=new VentanaBienvenida();
-        //        bienvenida.setVisible(true);
-        //        this.dispose();
+                VentanaApuestas bienvenida=new VentanaApuestas();
+                bienvenida.setVisible(true);
+                this.dispose();
 }//GEN-LAST:event_jRegresarActionPerformed
 
     private void jMenuItem1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MousePressed
