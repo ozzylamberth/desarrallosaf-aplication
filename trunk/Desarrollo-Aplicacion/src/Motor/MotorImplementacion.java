@@ -57,5 +57,8 @@ public class MotorImplementacion implements InterfaceEnlace {
             return false;
     }
 
+    public void PDF(String name,String nameCompetitor, String categoryName,int apuestaU){
+    }
+
 
 }

@@ -16,6 +16,7 @@ import Dominio.Evento;
 import Dominio.Usuario;
 import Interface.InterfaceEnlace;
 import Interface.Motor;
+import Motor.PDF;
 import java.lang.Integer;
 import java.lang.String;
 import java.text.ParseException;
@@ -549,6 +550,12 @@ public class VentanaEventos extends javax.swing.JFrame {
                     Apuesta= competidoresE.get(i).getMax_amount();
                     if ((Integer.parseInt(Apuesta)> apuestaU) && (apuestaU)>0){
                         resultado=miMotor.agregarApuesta(evento.getName(), evento.getCategoryName(),competidoresE.get(i).getNameCompetitor(), pos, apuestaU, fechaActual, status, evento.getCategory_type());
+                         PDF pdf= new PDF(evento.getName(), competidoresE.get(i).getNameCompetitor(),evento.getCategoryName(),apuestaU);
+                         pdf.setVisible(true);
+                         pdf.setBounds(0, 0, 100, 100);
+                         pdf.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                         pdf.setLocationRelativeTo(null);
+    
                         if (resultado){
                              JOptionPane.showMessageDialog(this, "Apuesta Agregada",strTitle,JOptionPane.OK_OPTION);
 
