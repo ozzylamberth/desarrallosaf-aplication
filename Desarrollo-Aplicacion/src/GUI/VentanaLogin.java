@@ -73,14 +73,11 @@ public class VentanaLogin extends javax.swing.JFrame {
             }
         });
 
-        nNick.setText("elsoty");
         nNick.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nNickActionPerformed(evt);
             }
         });
-
-        nPassword.setText("11");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -180,12 +177,12 @@ public class VentanaLogin extends javax.swing.JFrame {
 
             auxPassword = ControladorUsuario.buscarUsuario(nNick.getText());
 
-            if (auxPassword.getPasswordUsuario() != null ){
-                if ((nPassword.getText().equals(auxPassword.getPasswordUsuario()))){
+            if (auxPassword.getPassword() != null ){
+                if ((nPassword.getText().equals(auxPassword.getPassword()))){
                 JOptionPane.showMessageDialog(null, "Bienvenido " + nNick.getText(), strTitle,
                         JOptionPane.INFORMATION_MESSAGE);
-                        VentanaApuestas apuesta = new VentanaApuestas();
-                        apuesta.setVisible(true);
+                        VentanaXML xml = new VentanaXML();
+                        xml.setVisible(true);
                         this.dispose();
                 }
                 else{

@@ -31,6 +31,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.apache.log4j.Logger;
 import java.util.Map;
+import org.apache.log4j.PropertyConfigurator;
 
 /**
  *
@@ -46,6 +47,11 @@ public class VentanaEventos extends javax.swing.JFrame {
      private String strTitle = "Eventos-Gamble´s Sport";
     ControlEvento controlEvento = new ControlEvento();
      private static InterfaceEnlace miMotor = Motor.getMotorImplementacion();
+     static {
+
+PropertyConfigurator.configure("log4j.properties");
+
+}
 
     /** Creates new form VentanaAgregarEvento */
     public VentanaEventos(String categoria) {

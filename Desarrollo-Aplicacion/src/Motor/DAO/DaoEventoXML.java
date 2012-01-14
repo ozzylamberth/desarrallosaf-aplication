@@ -15,6 +15,7 @@ import org.jdom.input.SAXBuilder;
 import Dominio.Evento;
 import Dominio.ListaEventos;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 /**
  *
@@ -33,6 +34,12 @@ public class DaoEventoXML implements IdaoEvento {
     Evento eventoFinal;
     ListaEventos listaEventos;
     private ArrayList<Evento> eventoR;
+    static {
+
+PropertyConfigurator.configure("log4j.properties");
+
+}
+
 
 
 

@@ -20,6 +20,7 @@ import org.apache.log4j.Logger;
 
 import java.util.Collection;
 import java.util.Date;
+import org.apache.log4j.PropertyConfigurator;
 
 /**
  *
@@ -29,7 +30,12 @@ public class MotorImplementacion implements InterfaceEnlace {
 
     private static DAOApuesta manejadorPersistencia = new DAOApuesta();
     private static DaoEventoXML manejadorPersistenciaEvento = new DaoEventoXML();
-    
+    static {
+
+PropertyConfigurator.configure("log4j.properties");
+
+}
+
 
 
 
@@ -59,6 +65,8 @@ public class MotorImplementacion implements InterfaceEnlace {
 
     public void PDF(String name,String nameCompetitor, String categoryName,int apuestaU){
     }
+
+    
 
 
 }

@@ -21,6 +21,7 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 /**
  *
@@ -30,6 +31,12 @@ public class VentanaCategoria extends javax.swing.JFrame {
     private String strTitle = "Eventos-Gamble´s Sport";
     private static InterfaceEnlace miMotor = Motor.getMotorImplementacion();
     private final static Logger log = Logger.getLogger(VentanaCategoria.class);
+    static {
+
+PropertyConfigurator.configure("log4j.properties");
+
+}
+
 
     /** Creates new form VentanaCategoria */
     public VentanaCategoria() {

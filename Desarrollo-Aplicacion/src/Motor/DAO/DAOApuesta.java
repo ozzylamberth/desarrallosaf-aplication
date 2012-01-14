@@ -7,6 +7,7 @@ package Motor.DAO;
 
 //import com.mysql.jdbc.PreparedStatement;
 //import com.mysql.jdbc.Statement;
+import Dominio.Apuesta;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -90,6 +91,53 @@ catch(ClassNotFoundException ex) {
         }
 
     }
+
+//    public boolean buscarApuesta(String Status){
+//        try {
+//            conectar();
+//            s = (Statement) conn.createStatement();
+//            ResultSet v = s.executeQuery("Select NAME_EVENT, CATEGORY, COMPETITOR, POSITION, AMOUNT, FECHA, STATUS, CATEGORY_TYPE from administrators WHERE STATUS ='" + "NO ENVIADO" +"'");
+//            Apuesta aux = new Apuesta();
+//            while(v.next()) {
+//               aux.setNombreEvento(v.getNString(1));
+//               aux.setNombreCategoria(v.getNString(2));
+//               aux.setCompetidor(v.getNString(3));
+//               aux.setPos(v.getInt(4));
+//               aux.setMontoApostado(v.getInt(5));
+//
+//
+//                }
+//            return aux;
+//            }
+//         catch (SQLException ex) {
+//            log.error("Error en seleccion de usuario");
+//            return null;
+//
+//        }
+//
+//
+//    }
+//
+//
+//     public void escribirApuestas(ListaPersonas personas) {
+//        int i = 0;
+//        Element root = new Element("personas");
+//
+//        for (i = 0; i < personas.getMisPersonas().size(); i++) {
+//            agregarPersona nuevo = new agregarPersona(personas.getMisPersonas().get(i));
+//            root.addContent(nuevo);
+//        }
+//        Document doc = new Document(root);
+//        try {
+//            XMLOutputter out = new XMLOutputter(Format.getPrettyFormat());
+//            FileWriter writer = new FileWriter("src/serversocket/ListaPersonas.xml");
+//            out.output(doc, writer);
+//        } catch (java.io.IOException e) {
+//            System.out.println("Problema con I/O al escribir el xml");
+//        } catch (Exception e) {
+//            System.out.println("Problema al escribir el xml");
+//        }
+//    }
 
 
 
