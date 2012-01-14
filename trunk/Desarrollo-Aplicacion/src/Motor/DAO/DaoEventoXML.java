@@ -43,7 +43,7 @@ public class DaoEventoXML implements IdaoEvento {
     public ArrayList<Evento> todosLosEventos() {
         try {
             SAXBuilder builder = new SAXBuilder(false);
-            Document doc = builder.build("Events.xml");
+            Document doc = builder.build("G:/Events.xml");
             Element raiz = doc.getRootElement();
             List evento1 = raiz.getChildren("event");
             Iterator k = evento1.iterator();

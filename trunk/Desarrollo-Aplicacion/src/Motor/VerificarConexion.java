@@ -39,7 +39,7 @@ public class VerificarConexion extends Thread {
                     }
                 }
                 espera++;
-                File a = new File("J:/");
+                File a = new File("G:/");
                 File[] roots = File.listRoots();
                 for (int i=0; i<roots.length; i++) {
                 System.out.println(roots[i]);
@@ -59,7 +59,7 @@ public class VerificarConexion extends Thread {
                      if (existe ==1 ){
                         System.out.println("Existe");
                         IdaoEvento manejadorPersistencia = (IdaoEvento) new DaoEventoXML();
-                        manejadorPersistencia.todosLosEventos();
+                        //manejadorPersistencia.todosLosEventos();
                         
                      }
                     else{
